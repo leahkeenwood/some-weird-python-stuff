@@ -85,17 +85,17 @@ class MultipleChoice(Question):
     # Creating a display prompt with the question prompt and choices listed below.
     def displayForTest(self):
         # Setting the initial prompt to the top of the output.
-        output = self.getPrompt()
+        output = f"{self.getPrompt()}\n"
 
         # For each choice within the list, append it to the output.
         for index in range(len(self.__choices)):
             choice = self.getChoice(index)
-            output += f"\n{choice}"
+            output += f"{choice}\n"
         return output
 
     # Appending Choices to ensure the data values are showing up accordingly.
     def __str__(self):
-        return f"{super().__str__()}\n" + f"Choices: {self.__choices}\n"
+        return f"{super().__str__()}\n" + f"Choices: {self.__choices}"
 
 # Creating Short Answer class with Question as it's base.
 class ShortAnswer(Question):
@@ -119,7 +119,7 @@ class ShortAnswer(Question):
 
     # Appending Character Limit to ensure the data values are showing up accordingly.
     def __str__(self):
-        f"{super().__str__()}\n" + f"Character limit: {self.getLength()}"
+        return f"{super().__str__()}\n" + f"Character limit: {self.getLength()}"
 
 # Creating a Fill in the Blank class with Question as it's base.
 class FillInTheBlank(Question):
@@ -130,7 +130,7 @@ class FillInTheBlank(Question):
 
     # Creating a display prompt with the ask to "Fill in the blank:" prior.
     def displayForTest(self):
-        return f"Fill in the blank: \n{self.getPrompt()}"
+        return f"Fill in the blank:\n{self.getPrompt()}"
     
     # No extra data to report for the str, relay the default.
     def __str__(self):
