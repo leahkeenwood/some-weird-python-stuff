@@ -45,7 +45,7 @@ class Question(ABC):
     
     # Ensuring all data types are being displayed properly.
     def __str__(self):
-        return f"Prompt: {self.getPrompt()}\nCorrect Answer: {self.getCorrectAnswer()}\nPoints: {self.getPoints()}"
+        return f"Prompt: {self.getPrompt()}\nCorrect Answer: {self.getCorrectAnswer()}\nPoints: {self.getPoints()}\n"
 
 
 # Creating a reusable guard clause for use with multiple choice class.
@@ -95,7 +95,7 @@ class MultipleChoice(Question):
 
     # Appending Choices to ensure the data values are showing up accordingly.
     def __str__(self):
-        return f"{super().__str__()}\n" + f"Choices: {self.__choices}"
+        return f"{super().__str__()}" + f"Choices: {self.__choices}"
 
 # Creating Short Answer class with Question as it's base.
 class ShortAnswer(Question):
@@ -119,7 +119,7 @@ class ShortAnswer(Question):
 
     # Appending Character Limit to ensure the data values are showing up accordingly.
     def __str__(self):
-        return f"{super().__str__()}\n" + f"Character limit: {self.getLength()}"
+        return f"{super().__str__()}" + f"Character limit: {self.getLength()}"
 
 # Creating a Fill in the Blank class with Question as it's base.
 class FillInTheBlank(Question):

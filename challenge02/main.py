@@ -18,7 +18,7 @@ def answerQuestion(question):
 
    # First providing the question, before asking the user to provide an answer.
    # The answer is then stored in the global answer variable.
-   print(quiz[question].displayForTest())
+   print(question.displayForTest())
    answer = input("\nEnter your answer: ")
    return
 
@@ -27,13 +27,14 @@ def answerQuestion(question):
 def gradeQuestion(question, userAnswer):
    # These variables will take the correct answer and user answer converting it to lowercase.
    # If the question is Multiple Choice, it splits the answer accordingly.
-   correctAnswerLowercase = quiz[question].getCorrectAnswer().lower()
+   correctAnswerLowercase = question.getCorrectAnswer().lower()
    userAnswerLowercase = userAnswer.lower()
 
    # With the new variables, we can check if the user answer applies to the correct answer.
    # If Multiple choice, this can be "a", "A", or "Dragon", and you'll still get an accurate result.
    if userAnswerLowercase in correctAnswerLowercase:
-      return f"{quiz[question].getPoints()}"
+      print(f"\nYou earned: {question.getPoints()} points")
+      return question.getPoints()
    else:
       return "0"
 
@@ -49,5 +50,5 @@ if __name__ == "__main__":
 
    # In doing a list for the questions, we can do a for loop to go through each question, making our code cleaner overall.
    for index in range(len(quiz)):
-      answerQuestion(index)
-      gradeQuestion(index, answer)
+      answerQuestion(quiz[index])
+      gradeQuestion(quiz[index], answer)
