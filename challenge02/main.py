@@ -31,7 +31,7 @@ def gradeQuestion(question, userAnswer):
    # These vaiables will take the correct answer and user answer converting it to lowercase.
    # If the question is Multiple Choice, it splits the answer accordingly.
    correctAnswerLowercase = quiz[question].getCorrectAnswer().lower().split(". ")
-   userAnswerLowercase = answer.lower()
+   userAnswerLowercase = userAnswer.lower()
 
    # With the new variables, we can check if the user answer applies to the correct answer.
    # If Multiple choice, this can be "a", "A", or "Dragon", and you'll still get an accurate result.
