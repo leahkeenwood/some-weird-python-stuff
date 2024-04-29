@@ -75,7 +75,7 @@ class MultipleChoice(Question):
             print("Please provide an integer.")
 
     # Defining Multiple Choice setters
-    def addChoices(self, choice):
+    def addChoice(self, choice):
         self.__choices.append(choice)
 
     def updateChoice(self, index, newChoice):
