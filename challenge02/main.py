@@ -24,7 +24,7 @@ def answerQuestion(question):
 
 # gradeQuestion takes the answerQuestion's answer and checks if the answer is correct.
 # The function then provides points to the user.
-def gradeQuestion(question, userAnswer, points):
+def gradeQuestion(question, userAnswer):
    # These variables will take the correct answer and user answer converting it to lowercase.
    # If the question is Multiple Choice, it splits the answer accordingly.
    correctAnswerLowercase = quiz[question].getCorrectAnswer().lower()
@@ -32,15 +32,14 @@ def gradeQuestion(question, userAnswer, points):
 
    # With the new variables, we can check if the user answer applies to the correct answer.
    # If Multiple choice, this can be "a", "A", or "Dragon", and you'll still get an accurate result.
-   if userAnswerLowercase not in correctAnswerLowercase:
-      print(f"Incorrect... The answer is {quiz[question].getCorrectAnswer()}.\n")
+   if userAnswerLowercase in correctAnswerLowercase:
+      print(f"{quiz[question].getPoints()} points!")
    else:
-      print(f"\nYou earned {points()} points!")
+      return 0
 
 # This is the actual script itself.
 if __name__ == "__main__":
    # We reset the points to 0, also giving the points variable a starting value for gradeQuestion to work.
-   points = 0
 
    # We set up the quiz into a list, using each item as a question.
    quiz = [
@@ -51,4 +50,4 @@ if __name__ == "__main__":
    # In doing a list for the questions, we can do a for loop to go through each question, making our code cleaner overall.
    for index in range(len(quiz)):
       answerQuestion(index)
-      gradeQuestion(index, answer, quiz[index].getPoints)
+      gradeQuestion(index, answer)
