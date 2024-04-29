@@ -95,7 +95,7 @@ class MultipleChoice(Question):
 
     # Appending Choices to ensure the data values are showing up accordingly.
     def __str__(self):
-        return super().__str__() + f"\nChoices: {self.__choices}"
+        return f"{super().__str__()}\n" + f"Choices: {self.__choices}\n"
 
 # Creating Short Answer class with Question as it's base.
 class ShortAnswer(Question):
@@ -119,7 +119,7 @@ class ShortAnswer(Question):
 
     # Appending Character Limit to ensure the data values are showing up accordingly.
     def __str__(self):
-        return super().__str__() + f"\nCharacter limit: {self.getLength()}"
+        f"{super().__str__()}\n" + f"Character limit: {self.getLength()}"
 
 # Creating a Fill in the Blank class with Question as it's base.
 class FillInTheBlank(Question):
