@@ -33,7 +33,7 @@ def gradeQuestion(question, userAnswer):
    # With the new variables, we can check if the user answer applies to the correct answer.
    # If Multiple choice, this can be "a", "A", or "Dragon", and you'll still get an accurate result.
    if userAnswerLowercase in correctAnswerLowercase:
-      print(f"{quiz[question].getPoints()} points!")
+      return quiz[question].getPoints()
    else:
       return 0
 
