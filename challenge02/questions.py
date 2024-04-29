@@ -58,7 +58,7 @@ def withinIndexRange(index: int, list: list) -> bool:
 class MultipleChoice(Question):
 
     # Initializing the values needed to make MultipleChoice functions work.
-    def __init__(self, prompt, correctAnswer, points, choices):
+    def __init__(self, prompt, choices, correctAnswer="", points=0):
         super().__init__(prompt, correctAnswer, points)
         self.__choices = choices
 
@@ -92,13 +92,13 @@ class MultipleChoice(Question):
 
     # Appending Choices to ensure the data values are showing up accordingly.
     def __str__(self):
-        return super().__str__() + f"Choices: {self.__choices()}"
+        return super().__str__() + f"\nChoices: {self.__choices}"
 
 # Creating Short Answer class with Question as it's base.
 class ShortAnswer(Question):
 
     # Initializing the values needed to make ShortAnswer functions work.
-    def __init__(self, prompt, correctAnswer, points, length=None):
+    def __init__(self, prompt, length, correctAnswer="", points=0):
         super().__init__(prompt, correctAnswer, points)
         self.__length = length
 
@@ -122,7 +122,7 @@ class ShortAnswer(Question):
 class FillInTheBlank(Question):
 
     # Initializing the Question values only, as this class needs no other variables.
-    def __init__(self, prompt, correctAnswer, points):
+    def __init__(self, prompt, correctAnswer="", points=0):
         super().__init__(prompt, correctAnswer, points)
 
     # Creating a display prompt with the ask to "Fill in the blank:" prior.
