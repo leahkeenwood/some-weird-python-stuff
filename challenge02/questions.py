@@ -62,6 +62,9 @@ class MultipleChoice(Question):
         super().__init__(prompt, correctAnswer, points)
         self.__choices = choices
 
+    def getChoices(self):
+        return self.__choices
+
     # Defining Multiple Choice getters
     def getChoice(self, index: int):
         # If zero is less than or equal to the index parameter, and index is
