@@ -20,13 +20,13 @@ class Question(ABC):
 
     # Defining getters
     def getPrompt(self):
-        return self.__prompt
+        return f"{self.__prompt}\n"
 
     def getCorrectAnswer(self):
-        return self.__correctAnswer
+        return f"{self.__correctAnswer}"
 
     def getPoints(self):
-        return self.__points
+        return f"{self.__points}"
 
     # Defining setters
     def setPrompt(self, prompt):
@@ -89,8 +89,7 @@ class MultipleChoice(Question):
 
         # For each choice within the list, append it to the output.
         for index in range(len(self.__choices)):
-            choice = self.getChoice(index)
-            output += f"\n{choice}"
+            output += f"{self.getChoice(index)}\n"
         return output
 
     # Appending Choices to ensure the data values are showing up accordingly.
@@ -130,7 +129,7 @@ class FillInTheBlank(Question):
 
     # Creating a display prompt with the ask to "Fill in the blank:" prior.
     def displayForTest(self):
-        return f"Fill in the blank: \n{self.getPrompt()}"
+        return f"Fill in the blank:\n{self.getPrompt()}"
     
     # No extra data to report for the str, relay the default.
     def __str__(self):
