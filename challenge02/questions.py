@@ -8,9 +8,11 @@
 #
 #
 # Creating a Question class object to give all Question types a base structure.
-class Question:
+from abc import ABC, abstractmethod
+class Question(ABC):
 
     # Defining the default values needed to make Question class' functions work.
+    @abstractmethod
     def __init__(self, prompt="", correctAnswer="", points=0):
         self.__prompt = prompt
         self.__correctAnswer = correctAnswer
@@ -37,12 +39,13 @@ class Question:
         self.__points = points
 
     # This function is for the types to create their own.
+    @abstractmethod
     def displayForTest(self):
         pass
     
     # Ensuring all data types are being displayed properly.
     def __str__(self):
-        return f"Prompt: {self.getPrompt()}\nCorrect Answer: {self.getCorrectAnswer()}\nPoints: {self.getPoints()}"
+        return f"Prompt: {self.getPrompt()}\nCorrect Answer: {self.getCorrectAnswer()}\nPoints: {self.getPoints()}\n"
 
 
 # Creating a reusable guard clause for use with multiple choice class.
@@ -55,9 +58,12 @@ def withinIndexRange(index: int, list: list) -> bool:
 class MultipleChoice(Question):
 
     # Initializing the values needed to make MultipleChoice functions work.
-    def __init__(self, prompt, correctAnswer, points, choices):
+    def __init__(self, prompt, choices, correctAnswer="", points=0):
         super().__init__(prompt, correctAnswer, points)
         self.__choices = choices
+
+    def getChoices(self):
+        return self.__choices
 
     # Defining Multiple Choice getters
     def getChoice(self, index: int):
@@ -69,7 +75,7 @@ class MultipleChoice(Question):
             print("Please provide an integer.")
 
     # Defining Multiple Choice setters
-    def addChoices(self, choice):
+    def addChoice(self, choice):
         self.__choices.append(choice)
 
     def updateChoice(self, index, newChoice):
@@ -79,23 +85,23 @@ class MultipleChoice(Question):
     # Creating a display prompt with the question prompt and choices listed below.
     def displayForTest(self):
         # Setting the initial prompt to the top of the output.
-        output = self.getPrompt()
+        output = f"{self.getPrompt()}\n"
 
         # For each choice within the list, append it to the output.
         for index in range(len(self.__choices)):
             choice = self.getChoice(index)
-            output += f"\n{choice}"
+            output += f"{choice}\n"
         return output
 
     # Appending Choices to ensure the data values are showing up accordingly.
     def __str__(self):
-        return super().__str__() + f"Choices: {self.__choices()}"
+        return f"{super().__str__()}" + f"Choices: {self.__choices}"
 
 # Creating Short Answer class with Question as it's base.
 class ShortAnswer(Question):
 
     # Initializing the values needed to make ShortAnswer functions work.
-    def __init__(self, prompt, correctAnswer, points, length=None):
+    def __init__(self, prompt, length, correctAnswer="", points=0):
         super().__init__(prompt, correctAnswer, points)
         self.__length = length
 
@@ -113,18 +119,18 @@ class ShortAnswer(Question):
 
     # Appending Character Limit to ensure the data values are showing up accordingly.
     def __str__(self):
-        return super().__str__() + f"\nCharacter limit: {self.getLength()}"
+        return f"{super().__str__()}" + f"Character limit: {self.getLength()}"
 
 # Creating a Fill in the Blank class with Question as it's base.
 class FillInTheBlank(Question):
 
     # Initializing the Question values only, as this class needs no other variables.
-    def __init__(self, prompt, correctAnswer, points):
+    def __init__(self, prompt, correctAnswer="", points=0):
         super().__init__(prompt, correctAnswer, points)
 
     # Creating a display prompt with the ask to "Fill in the blank:" prior.
     def displayForTest(self):
-        return f"Fill in the blank: \n{self.getPrompt()}"
+        return f"Fill in the blank:\n{self.getPrompt()}"
     
     # No extra data to report for the str, relay the default.
     def __str__(self):
