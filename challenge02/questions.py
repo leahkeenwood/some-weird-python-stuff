@@ -8,9 +8,11 @@
 #
 #
 # Creating a Question class object to give all Question types a base structure.
-class Question:
+from abc import ABC, abstractmethod
+class Question(ABC):
 
     # Defining the default values needed to make Question class' functions work.
+    @abstractmethod
     def __init__(self, prompt="", correctAnswer="", points=0):
         self.__prompt = prompt
         self.__correctAnswer = correctAnswer
@@ -37,6 +39,7 @@ class Question:
         self.__points = points
 
     # This function is for the types to create their own.
+    @abstractmethod
     def displayForTest(self):
         pass
     
